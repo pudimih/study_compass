@@ -15,9 +15,10 @@ O objetivo principal é oferecer uma visão clara e prática do que deve ser est
 
 ## 2. Arquitetura da Aplicação
 A aplicação foi dividida em **dois projetos distintos**, conforme solicitado no edital:
+```
 /backend → API REST em Python (Flask)
 /frontend → Aplicação Frontend em React
-
+```
 
 - Comunicação via **API REST**
 - Respostas em **JSON**
@@ -52,6 +53,7 @@ Banco utilizado:
 - Retorno adequado de status HTTP
 
 ### Endpoints
+```
 GET /subjects
 POST /subjects
 DELETE /subjects/{id}
@@ -62,6 +64,7 @@ PUT /topics/{id}
 DELETE /topics/{id}
 
 GET /study-now
+```
 
 A lógica de priorização (**Estudar agora**) é processada no backend.
 
@@ -124,6 +127,12 @@ http://localhost:5173
 
 ### 8. Imagens da Aplicação
 ![Home](./images/Captura%20de%20tela%202025-12-14%20145349.png)
+
+![Home](./images/Captura%20de%20tela%202025-12-14%20145507.png)
+
+![Home](./images/Captura%20de%20tela%202025-12-14%20145518.png)
+
+![Home](./images/Captura%20de%20tela%202025-12-14%20145548.png)
 
 
 
