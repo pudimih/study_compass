@@ -4,7 +4,8 @@ import {
   getAllTopics,
   createSubject,
   createTopic,
-  updateTopic
+  updateTopic,
+  getStudyNow
 } from "../api/api";
 
 import SubjectList from "../components/SubjectList";
@@ -16,10 +17,13 @@ export default function Home() {
   const [topics, setTopics] = useState([]);
   const [selectedSubject, setSelectedSubject] = useState(null);
   const [newSubject, setNewSubject] = useState("");
+  const [studyNow, setStudyNow] = useState([]);
+
 
   useEffect(() => {
     loadSubjects();
     loadTopics();
+    loadStudyNow();
   }, []);
 
   async function loadSubjects() {
@@ -31,6 +35,12 @@ export default function Home() {
     const data = await getAllTopics();
     setTopics(data);
   }
+
+  async function loadStudyNow() {
+  const data = await getStudyNow();
+  setStudyNow(data); 
+}
+
 
   async function handleCreateSubject() {
     if (!newSubject) return;
@@ -74,6 +84,22 @@ export default function Home() {
         selectedSubject={selectedSubject}
         onSelect={setSelectedSubject}
       />
+
+      <h2>🔥 Study Now</h2>
+
+{studyNow.length === 0 ? (
+  <p>Nenhum tópico urgente no momento 🎉</p>
+) : (
+  <ul>
+    {studyNow.map(topic => (
+      <li key={topic.id}>
+        <strong>{topic.title}</strong> — 📘 {topic.subject_name}
+        (prioridade {topic.priority})
+      </li>
+    ))}
+  </ul>
+)}
+
 
       <h2>
         {selectedSubject

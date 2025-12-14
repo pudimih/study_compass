@@ -1,4 +1,5 @@
 from app.extensions import db
+from app.services.priotity_service import calculate_priority
 
 class Topic(db.Model):
     __tablename__ = "topics"
@@ -16,7 +17,9 @@ class Topic(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
-            "title": self.title,
-            "status": self.status,
-            "subject_id": self.subject_id
+        "title": self.title,
+        "status": self.status,
+        "priority": calculate_priority(self.status),
+        "subject_id": self.subject_id,
+        "subject_name": self.subject.name
         }

@@ -17,6 +17,7 @@ export default function TopicList({ topics, onStatusChange }) {
               <div className="topic" key={topic.id}>
                 <strong>{topic.title}</strong>
                 <small>📘 {topic.subject_name}</small>
+                <small>🔥 Prioridade: {topic.priority}</small>
 
                 <div>
                   <button onClick={() => onStatusChange(topic.id, "NOT_STUDIED")}>❌</button>
