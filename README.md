@@ -48,9 +48,9 @@ Banco utilizado:
 - SQLite
 
 ### Funcionalidades
-- CRUD completo de matérias e tópicos
-- Uso correto dos métodos HTTP (GET, POST, PUT, DELETE)
-- Retorno adequado de status HTTP
+- CRUD de matérias e tópicos
+- Uso dos métodos HTTP (GET, POST, PUT, DELETE)
+- Retorno de status HTTP
 
 ### Endpoints
 
