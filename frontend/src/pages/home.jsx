@@ -66,7 +66,7 @@ export default function Home() {
 
   return (
     <div className="container">
-      <h1>Study Compass 📚</h1>
+      <h1>Study Compass</h1>
 
       <h2>Matérias</h2>
 
@@ -76,7 +76,13 @@ export default function Home() {
           onChange={e => setNewSubject(e.target.value)}
           placeholder="Nova matéria"
         />
-        <button onClick={handleCreateSubject}>Adicionar</button>
+        <button
+  className="add-button"
+  onClick={handleCreateSubject}
+>
+  Adicionar
+</button>
+
       </div>
 
       <SubjectList
@@ -84,21 +90,6 @@ export default function Home() {
         selectedSubject={selectedSubject}
         onSelect={setSelectedSubject}
       />
-
-      <h2>🔥 Study Now</h2>
-
-{studyNow.length === 0 ? (
-  <p>Nenhum tópico urgente no momento 🎉</p>
-) : (
-  <ul>
-    {studyNow.map(topic => (
-      <li key={topic.id}>
-        <strong>{topic.title}</strong> — 📘 {topic.subject_name}
-        (prioridade {topic.priority})
-      </li>
-    ))}
-  </ul>
-)}
 
 
       <h2>
@@ -116,6 +107,23 @@ export default function Home() {
         topics={topics}
         onStatusChange={handleStatusChange}
       />
+
+      <h2>Você deveria estudar agora:</h2>
+
+<div className="study-now">
+  {studyNow.length === 0 ? (
+    <p>Nenhum tópico urgente no momento</p>
+  ) : (
+    <ul>
+      {studyNow.map(topic => (
+        <li key={topic.id}>
+          <strong>{topic.title}</strong> — {topic.subject_name}
+        </li>
+      ))}
+    </ul>
+  )}
+</div>
+
     </div>
   );
 }

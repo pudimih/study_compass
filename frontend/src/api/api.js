@@ -50,3 +50,5 @@ export async function getStudyNow() {
   const res = await fetch(`${API_URL}/study-now`);
   return res.json();
 }
+
+
