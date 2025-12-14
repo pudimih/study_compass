@@ -15,10 +15,10 @@ O objetivo principal é oferecer uma visão clara e prática do que deve ser est
 
 ## 2. Arquitetura da Aplicação
 A aplicação foi dividida em **dois projetos distintos**, conforme solicitado no edital:
-```
-/backend → API REST em Python (Flask)
-/frontend → Aplicação Frontend em React
-```
+ 
+ backend → API REST em Python (Flask)
+ frontend → Aplicação Frontend em React
+
 
 - Comunicação via **API REST**
 - Respostas em **JSON**
@@ -53,7 +53,7 @@ Banco utilizado:
 - Retorno adequado de status HTTP
 
 ### Endpoints
-```
+
 GET /subjects
 POST /subjects
 DELETE /subjects/{id}
@@ -64,7 +64,7 @@ PUT /topics/{id}
 DELETE /topics/{id}
 
 GET /study-now
-```
+
 
 A lógica de priorização (**Estudar agora**) é processada no backend.
 
@@ -134,5 +134,19 @@ http://localhost:5173
 
 ![Home](./images/Captura%20de%20tela%202025-12-14%20145548.png)
 
+### 9. Como Usar a Aplicação
+- Primeiro, você cadastra a Matéria (ex: Matemática, História).
+- Em seguida, dentro de cada matéria, você cadastra os Assuntos ou tópicos específicos (ex: "Funções Quadráticas", "Segunda Guerra Mundial").
+- Ao ser criado, cada assunto é automaticamente posicionado na coluna "Não Estudado".
+- 
+Os assuntos e tópicos a serem estudados são organizados em um quadro Kanban, com colunas que representam o seu progresso em cada matéria.
+As colunas (estados) são:
+- Não Estudado
+- Em Progresso
+- Dominado
 
+Cada card possui um ícone que indica seu estado atual. Ao clicar no ícone dentro do card, o assunto é movido automaticamente para a coluna correspondente no Kanban.
+Exemplo:
+Se um assunto está na coluna "Não Estudado" e você clica no ícone "Em Progresso" dentro dele, esse card será movido automaticamente para a coluna "Em Progresso".
+Dessa forma, você gerencia visualmente seu avanço apenas clicando no ícone de estado de cada tópico.
 
