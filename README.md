@@ -54,16 +54,16 @@ Banco utilizado:
 
 ### Endpoints
 
-GET /subjects
-POST /subjects
-DELETE /subjects/{id}
+- - GET /subjects
+- - POST /subjects
+- - DELETE /subjects/{id}
+    
+- - GET /topics
+- - POST /topics
+- - PUT /topics/{id}
+- - DELETE /topics/{id}
 
-GET /topics
-POST /topics
-PUT /topics/{id}
-DELETE /topics/{id}
-
-GET /study-now
+- - GET /study-now
 
 
 A lógica de priorização (**Estudar agora**) é processada no backend.
