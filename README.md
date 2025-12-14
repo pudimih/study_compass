@@ -123,7 +123,7 @@ http://localhost:5173
 ```
 
 ### 8. Imagens da Aplicação
-
+![Home](./images/Captura%20de%20tela%202025-12-14%20145349.png)
 
 
 
