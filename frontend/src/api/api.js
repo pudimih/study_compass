@@ -19,14 +19,23 @@ export async function getTopics(subjectId) {
   return res.json();
 }
 
-export async function createTopic(title, subjectId) {
-  const res = await fetch(`${API_URL}/topics`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ title, subject_id: subjectId })
-  });
+export async function getAllTopics() {
+  const res = await fetch(`${API_URL}/topics`);
   return res.json();
 }
+
+
+export async function createTopic(title, subjectId) {
+  return fetch(`${API_URL}/topics`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      title: title.trim(),
+      subject_id: Number(subjectId)
+    })
+  });
+}
+
 
 export async function updateTopic(id, status) {
   const res = await fetch(`${API_URL}/topics/${id}`, {

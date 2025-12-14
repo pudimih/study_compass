@@ -1,19 +1,25 @@
 import { useEffect, useState } from "react";
 import {
   getSubjects,
+  getAllTopics,
   createSubject,
-  getStudyNow
+  createTopic,
+  updateTopic
 } from "../api/api";
+
 import SubjectList from "../components/SubjectList";
+import TopicList from "../components/TopicList";
+import TopicForm from "../components/TopicForm";
 
 export default function Home() {
   const [subjects, setSubjects] = useState([]);
+  const [topics, setTopics] = useState([]);
+  const [selectedSubject, setSelectedSubject] = useState(null);
   const [newSubject, setNewSubject] = useState("");
-  const [studyNow, setStudyNow] = useState([]);
 
   useEffect(() => {
     loadSubjects();
-    loadStudyNow();
+    loadTopics();
   }, []);
 
   async function loadSubjects() {
@@ -21,9 +27,9 @@ export default function Home() {
     setSubjects(data);
   }
 
-  async function loadStudyNow() {
-    const data = await getStudyNow();
-    setStudyNow(data);
+  async function loadTopics() {
+    const data = await getAllTopics();
+    setTopics(data);
   }
 
   async function handleCreateSubject() {
@@ -33,28 +39,57 @@ export default function Home() {
     loadSubjects();
   }
 
+  async function handleCreateTopic(title) {
+    if (!selectedSubject) {
+      alert("Selecione uma matéria");
+      return;
+    }
+
+    await createTopic(title, selectedSubject.id);
+    loadTopics();
+  }
+
+  async function handleStatusChange(id, status) {
+    await updateTopic(id, status);
+    loadTopics();
+  }
+
   return (
-    <div>
-      <h1>Study Compass</h1>
+    <div className="container">
+      <h1>Study Compass 📚</h1>
 
       <h2>Matérias</h2>
-      <input
-        value={newSubject}
-        onChange={e => setNewSubject(e.target.value)}
-        placeholder="Nova matéria"
+
+      <div className="add-subject">
+        <input
+          value={newSubject}
+          onChange={e => setNewSubject(e.target.value)}
+          placeholder="Nova matéria"
+        />
+        <button onClick={handleCreateSubject}>Adicionar</button>
+      </div>
+
+      <SubjectList
+        subjects={subjects}
+        selectedSubject={selectedSubject}
+        onSelect={setSelectedSubject}
       />
-      <button onClick={handleCreateSubject}>Adicionar</button>
 
-      <SubjectList subjects={subjects} />
+      <h2>
+        {selectedSubject
+          ? `Criar tópico em: ${selectedSubject.name}`
+          : "Selecione uma matéria para criar tópico"}
+      </h2>
 
-      <h2>Estude agora</h2>
-      <ul>
-        {studyNow.map(topic => (
-          <li key={topic.id}>
-            {topic.title} (prioridade {topic.priority})
-          </li>
-        ))}
-      </ul>
+      <TopicForm
+        onCreate={handleCreateTopic}
+        disabled={!selectedSubject}
+      />
+
+      <TopicList
+        topics={topics}
+        onStatusChange={handleStatusChange}
+      />
     </div>
   );
 }
